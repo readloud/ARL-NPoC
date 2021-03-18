@@ -26,6 +26,8 @@ class Plugin(BasePlugin):
         if len(data) != 2:
             return False
 
+        self.logger.debug("receive {}".format(data))
+
         if data[0] == 5:
             return self.target_scheme
         return False

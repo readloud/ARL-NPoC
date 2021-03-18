@@ -129,6 +129,10 @@ def should_skip_web_brute_result(plg):
     if not callable(login_fun):
         return False
 
+    service_brute_fun = getattr(plg, "service_brute", None)
+    if service_brute_fun and callable(service_brute_fun):
+        return False
+
     if plg.plugin_type == PluginType.BRUTE:
         return True
     else:
