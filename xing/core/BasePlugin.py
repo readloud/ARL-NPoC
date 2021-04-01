@@ -2,7 +2,7 @@ import os
 from xing.conf import Conf
 from xing.core import PluginType, DEFAULT_PORT_SCHEME_LIST
 from xing.utils import parse_target_info, get_logger, load_file
-
+import socket
 
 class BasePlugin:
     def __init__(self):
@@ -180,3 +180,16 @@ class BasePlugin:
 
     def __str__(self):
         return getattr(self, '_plugin_name', "")
+
+    def conn_target(self):
+        """
+        连接到目标, 请调用后一定要手动close
+        """
+
+        host = self.target_info["host"]
+        port = self.target_info["port"]
+        client = socket.socket()
+        client.settimeout(4)
+        client.connect((host, port))
+
+        return client
