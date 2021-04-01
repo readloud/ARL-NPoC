@@ -36,6 +36,7 @@ class SchemeType:
     SOCKS5 = "socks5"
     NFS = "nfs"
     PROXY_HTTPS = "proxy_https" #支持connect语法
+    COBALT_STRIKE = 'csts'  # COBALT_STRIKE 团队服务器
 
 
 DEFAULT_PORT_SCHEME_LIST = [SchemeType.IMAP, SchemeType.LDAP,
