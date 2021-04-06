@@ -27,7 +27,10 @@ class Plugin(BasePlugin):
 
         resp = b''
         while len(resp) < 4:
-            resp += ssl_sock.recv(4)
+            data = ssl_sock.recv(4)
+            if len(data) < 1:
+                break
+            resp += data
 
         ssl_sock.close()
         return resp
