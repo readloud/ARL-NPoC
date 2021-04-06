@@ -16,9 +16,9 @@ class Plugin(BasePlugin):
 
     def gen_payload(self, pwd):
         payload = bytearray(
-            b'\x00\x00\xbe\xef' + 
+            b'\x00\x00\xbe\xef' +
             len(pwd).to_bytes(1, 'big', signed=True) +
-            bytes(bytes(pwd, 'ascii').ljust(256, b'M')) 
+            bytes(bytes(pwd, 'ascii').ljust(256, b'M'))
         )
 
         return payload
@@ -47,7 +47,10 @@ class Plugin(BasePlugin):
 
         resp = b''
         while len(resp) < 4:
-            resp += ssl_sock.recv(4)
+            data = ssl_sock.recv(4)
+            if len(data) < 1:
+                break
+            resp += data
 
         ssl_sock.close()
         return resp
