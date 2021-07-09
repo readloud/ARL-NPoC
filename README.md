@@ -9,6 +9,7 @@ https://nmap.org/ncrack/
 
 ## 安装
 ```
+pip3 install -r requirements.txt
 pip3 install -e .
 ```
 
