@@ -94,17 +94,23 @@ def get_logger():
     return logger
 
 
-
-
 UA = "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36"
 
 
-def http_req(url, method = 'get', **kwargs):
+# http 请求封装函数
+def http_req(url, method='get', **kwargs):
+    if kwargs.get("disable_normal"):
+        # 禁用 URL 规范化处理，仅仅支持GET
+        return req_disable_normal(url)
+
     kwargs.setdefault('verify', False)
     kwargs.setdefault('timeout', (Conf.CONNECT_TIMEOUT, Conf.READ_TIMEOUT))
     kwargs.setdefault('allow_redirects', False)
 
     headers = kwargs.get("headers", {})
+    if headers is None:
+        headers = {}
+
     headers.setdefault("User-Agent", UA)
 
     random_ip = "10.0.{}.{}".format(random.randint(1, 254), random.randint(1, 254))
@@ -124,6 +130,27 @@ def http_req(url, method = 'get', **kwargs):
     conn = getattr(requests, method)(url, **kwargs)
 
     return conn
+
+
+# 禁用规范化URL处理
+def req_disable_normal(url):
+    headers = {
+        "User-Agent": UA
+    }
+    req = requests.Request(method='GET', url=url, headers=headers)
+    prep = req.prepare()
+    prep.url = url
+
+    proxies = {}
+
+    if Conf.PROXY_URL:
+        proxies = {
+            'http': Conf.PROXY_URL,
+            'https': Conf.PROXY_URL
+        }
+
+    with requests.Session() as session:
+        return session.send(prep, verify=False, proxies=proxies, timeout=(Conf.CONNECT_TIMEOUT, Conf.READ_TIMEOUT))
 
 
 def md5(data):
