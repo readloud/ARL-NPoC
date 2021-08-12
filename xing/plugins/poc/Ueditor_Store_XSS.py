@@ -8,7 +8,7 @@ class Plugin(BasePlugin):
     def __init__(self):
         super(Plugin, self).__init__()
         self.plugin_type = PluginType.POC
-        self.vul_name = "Ueditor SSRF 漏洞"
+        self.vul_name = "Ueditor 存储 XSS 漏洞"
         self.app_name = 'Ueditor'
         self.scheme = [SchemeType.HTTP, SchemeType.HTTPS]
 
