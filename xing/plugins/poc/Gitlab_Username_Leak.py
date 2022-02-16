@@ -38,8 +38,9 @@ class Plugin(BasePlugin):
         users = self.gen_users()
         if users:
             self.logger.success("found {} users {} {}".format(target, len(users), users))
-
-        return users
+        
+        # 返回string ，前端显示有点问题。 
+        return ",".join(users)
 
     def _get_user(self, uid):
         url = "{}/api/v4/users/{}".format(self.target, uid)
