@@ -44,7 +44,7 @@ The `-t` parameter of the subcommand can be a file name or a single specified ta
 ## Remark
 This project is a submodule in ARL
 
-https://github.com/TophantTechnology/ARL
+[TophantTechnology](https://github.com/TophantTechnology/ARL)
 
 ## Disclaimer
 If you download, install, use, modify this system and related codes, it means that you trust this system.
