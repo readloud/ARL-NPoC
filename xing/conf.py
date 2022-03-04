@@ -1,6 +1,7 @@
 import os
 import logging
 import tempfile
+import traceback
 
 class Conf(object):
     """运行配置类"""
@@ -23,7 +24,7 @@ class Conf(object):
     """JSON格式保存文件名"""
     SAVE_JSON_RESULT_FILENAME = "npoc_result_json.txt"
 
-    DUMP_RESULT_REQ_FLAG = False
+    DUMP_RESULT_REQ_FLAG = True
 
     """连接超时时间"""
     CONNECT_TIMEOUT = 5.1

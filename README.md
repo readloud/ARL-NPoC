@@ -1,56 +1,55 @@
-## 说明
+## illustrate
 
-集漏洞验证和任务运行的一个框架
+A framework that integrates vulnerability verification and task execution
 
-
-## 依赖
+## dependencies
 https://nmap.org/ncrack/
 
 
-## 安装
-```
+## Install
+````
 pip3 install -r requirements.txt
 pip3 install -e .
-```
+````
 
-## 使用
+## use
 
-```
+````
 xing -h
 
 usage: xing [-h] [--version] [--quit]
-            [--log {debug,info,success,warning,error}]
-            {list,scan,sniffer,exploit,brute} ...
+[--log {debug,info,success,warning,error}]
+{list,scan,sniffer,exploit,brute} ...
 
 positional arguments:
-  {list,scan,sniffer,exploit,brute}
-                        子命令
-    list                显示插件
-    scan                扫描
-    sniffer             协议识别
-    exploit             漏洞利用
-    brute               弱口令爆破
+{list,scan,sniffer,exploit,brute}
+subcommand
+list show plugins
+scan scan
+sniffer protocol identification
+exploit exploit
+brute weak password blasting
 
 optional arguments:
-  -h, --help            show this help message and exit
-  --version, -V         show program's version number and exit
-  --quit, -q            安静模式 (default: False)
-  --log {debug,info,success,warning,error}, -L {debug,info,success,warning,error
+-h, --help show this help message and exit
+--version, -V show program's version number and exit
+--quit, -q Quiet mode (default: False)
+--log {debug,info,success,warning,error}, -L {debug,info,success,warning,error
 }
-                        日志等级 (default: info)
-```
+log level (default: info)
+````
 
-其中子命令的`-t`参数可以为文件名也可以为单个指定的目标，`-n` 按照文件名筛选`PoC`
+The `-t` parameter of the subcommand can be a file name or a single specified target, and `-n` filters `PoC` according to the file name
 
-## 备注
-本项目是ARL中的子模块
+## Remark
+This project is a submodule in ARL
 
 https://github.com/TophantTechnology/ARL
 
-## 免责声明
-如果您下载、安装、使用、修改本系统及相关代码，即表明您信任本系统。
-在使用本系统时造成对您自己或他人任何形式的损失和伤害，我们不承担任何责任。
-如您在使用本系统的过程中存在任何非法行为，您需自行承担相应后果，我们将不承担任何法律及连带责任。
-请您务必审慎阅读、充分理解各条款内容，特别是免除或者限制责任的条款，并选择接受或不接受。
-除非您已阅读并接受本协议所有条款，否则您无权下载、安装或使用本系统。
-您的下载、安装、使用等行为即视为您已阅读并同意上述协议的约束。
+## Disclaimer
+If you download, install, use, modify this system and related codes, it means that you trust this system.
+We shall not be liable for any loss or injury of any kind to yourself or others while using this system.
+If you have any illegal behavior in the process of using this system, you shall bear the corresponding consequences by yourself, and we will not bear any legal and joint responsibility.
+Please be sure to carefully read and fully understand the contents of each clause, especially the clauses exempting or limiting liability, and choose to accept or not to accept.
+You have no right to download, install or use this system unless you have read and accepted all the terms of this agreement.
+Your download, installation, use and other behaviors are deemed that you have read and agreed to be bound by the above agreement.

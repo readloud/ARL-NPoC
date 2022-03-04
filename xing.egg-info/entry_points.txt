@@ -1,0 +1,3 @@
+[console_scripts]
+xing = xing.main:main
+
