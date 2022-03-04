@@ -1,6 +1,4 @@
-## illustrate
-
-A framework that integrates vulnerability verification and task execution
+# ARL-NPoC
 
 ## dependencies
 https://nmap.org/ncrack/
